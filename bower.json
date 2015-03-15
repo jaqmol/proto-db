@@ -1,0 +1,23 @@
+{
+  "name": "ProtoDB",
+  "version": "0.9.0",
+  "authors": [
+    "Ronny Reichmann <jaqmol@users.noreply.github.com>"
+  ],
+  "description": "In-browser database - backed by IndexedDB - with a beautiful API.",
+  "main": "./proto-db.service.js",
+  "keywords": [
+    "indexeddb",
+    "database",
+    "angularjs",
+    "beautiful-api"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
