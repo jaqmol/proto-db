@@ -10,7 +10,6 @@ With IndexedDB modern browsers get a reliable cross-platform storage technique. 
 3. **Cover all features.**
 
 > ProtoDB is a lean layer around IndexedDB. While keeping most of wording and concept, it offers the following comforts:
-
 - **transactions** are completely **abstracted away**
 - **single data items and arrays** thereof are **treated alike** 
 - **asynchronous behavior** is implemented with **JS promises**
