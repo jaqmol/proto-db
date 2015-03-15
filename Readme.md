@@ -23,9 +23,9 @@ Code is organized as a AngularJS module. If you're unhappy with that, go make a 
 [Configure databases](#configure-databases) | [Configure object stores](#configure-object-stores) | [Upgrade object stores](#upgrade-object-stores) | [Configure indexes](#configure-indexes) | [Accessing data in object stores](#accessing-data-in-object-stores) | [Getting an object store](#getting-an-object-store)
 
 ###### References
-**[Object store API reference](#object-store-api-reference)** | [all](#-os-all) | [index](#-os-index) | [count](#-os-count) | [add](#-os-add) | [clear](#-os-clear) | [delete](#-os-delete) | [get](#-os-get) | [put](#-os-put) | [forEach](#-os-foreach) | [map](#-os-map) | [filter](#-os-filter)
+**[Object store API reference](#object-store-api-reference)** | [all](#osall) | [index](#osindex) | [count](#oscount) | [add](#osadd) | [clear](#osclear) | [delete](#osdelete) | [get](#osget) | [put](#osput) | [forEach](#osforeach) | [map](#osmap) | [filter](#osfilter)
   
-**[Indexes API reference](#indexes-api-reference)** | [all](#-idx-all) | [forEach](#-idx-foreach) | [map](#-idx-map) | [filter](#-idx-filter) | [IndexResult](#indexresult)
+**[Indexes API reference](#indexes-api-reference)** | [all](#idxall) | [forEach](#idxforeach) | [map](#idxmap) | [filter](#idxfilter) | [IndexResult](#indexresult)
   
 [ToDo](#todo)
 
