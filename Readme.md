@@ -5,11 +5,15 @@ ProtoDB
 
 With IndexedDB modern browsers get a reliable cross-platform storage technique. Unfortunately the API is cumbersome. ProtoDB aims to fix that, under the following corner points:
 
-1. Greatly simplify the usage of IndexedDB.
-2. Don't compromise debugability.
-3. Cover all features.
+1. **Greatly simplify the usage of IndexedDB.**
+2. **Don't compromise debugability.**
+3. **Cover all features.**
 
-> **ProtoDB is a lean layer around the IndexedDB API. While keeping most of wording and concept, transactions are completely abstracted away, while the treating of single data items and collections alike is added. Asynchronous behavior is implemented with JS promises. Data migration between versions of your database schema is greatly simplified.**
+> ProtoDB is a lean layer around the IndexedDB. While keeping most of wording and concept, it offers with the following comforts:
+- **transactions** are completely **abstracted away**
+- **single data items and arrays** thereof are **treated alike** 
+- **asynchronous behavior** is implemented with **JS promises**
+- **data migration/upgrades** between versions of your database is **greatly simplified.**
 
 Code is organized as a AngularJS module. If you're unhappy with that, go make a fork. I'll be happy to help, just drop me a line.
 
@@ -46,9 +50,9 @@ Checks if IndexedDB is supported by the browser.
 
 ## Concept explained
 
-Data objects/items are stored in so called "object stores". Each object store is part of a database. Each database can house several object stores. An application can create several databases per domain, each containing several object stores. The object stores are the central means of storing and retrieving data objects. Properties known to be searched for often, can be configured to be kept in indexes, to optimize performance.
+Data **objects/items** are stored **in object stores**. Each **object store** is **part of** a **database**. Each **database** can **house several object stores**. An application can **create several databases per domain.** The **object stores** are the **central means of storing and retrieving** data objects. Properties known to be searched for often, can be configured to be kept in **indexes, to optimize performance.**
 
-In all the former regards ProtoDB sticks to IndexedDB, keeping it thin and lightweight.
+In all the former regards ProtoDB sticks to IndexedDB, keeping it **thin** and **lightweight.**
 
 ## Configure databases
 
@@ -200,9 +204,9 @@ ProtoDB.configDatabase({
 
 ### Accessing data in object stores
 
-**Please note** that before any object store can be accessed, databases and object stores have to be configured in order to have the necessary properties created for us. This process must occur first and foremost.
+**Please note** that **before any object store can be accessed, databases and object stores have to be configured** in order to have the necessary properties created for us. This process **must occur first and foremost.**
 
-**Please furthermore note** that the actual process of configuring the underlying IndexedDB is performed event-driven: at the time of your first operation on a specific version of a database. The process is performed only once per version and can be triggered on purpose by increasing the version number.
+**Please furthermore note** that the **actual process of configuring** the underlying **IndexedDB** is **performed** event-driven: **at** the **time of** your **first operation on** a specific version of a **database.** The **process** is **performed** only **once per version** and can be **triggered on purpose by increasing** the **version number.**
 
 ### Getting an object store
 
