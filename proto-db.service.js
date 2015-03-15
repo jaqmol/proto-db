@@ -48,10 +48,10 @@ angular.module('proto-db', [])
 				callback(this.primaryKeys[i], this.values[i]);
 			}
 		};
-		
+
         var IndexHelper = function(storeAccessor, indexName) {
 			var self = this;
-			
+
 			Object.defineProperty(self, 'index', {
 				get: function() {
 		            return $q(function(resolve, reject) {
@@ -61,7 +61,7 @@ angular.module('proto-db', [])
 		            });
 				}
 			});
-			
+
 			Object.defineProperty(self, 'all', {
 				get: function() {
 		            return $q(function(resolve, reject) {
@@ -147,7 +147,7 @@ angular.module('proto-db', [])
     {
         var ObjectStoreHelper = function(objectStore) {
             this.objectStore = objectStore;
-			
+
 			var self = this;
 			Object.defineProperty(self, 'all', {
 			    get: function() {
@@ -289,35 +289,35 @@ angular.module('proto-db', [])
 				database = null,
 				mappingJobs = [],
 				dbAccessor = {};
-				
+
 			var performMappingJobs = function(finished) {
-				if (mappingJobs.length === 0) { 
+				if (mappingJobs.length === 0) {
 					finished();
-					return; 
+					return;
 				}
-				
+
 				var job = mappingJobs.splice(0, 1)[0],
 					accessor = dbAccessor[job.config.name];
-				
+
 				accessor.map(function(item) {
 					return job.config.upgradeMapper(item, job.oldVersion, job.newVersion);
-					
+
 				}).then(function(mappedItems) {
 					accessor.clear().then(function() {
 						return accessor.add(mappedItems);
-						
+
 					}).then(function() {
 						performMappingJobs(finished);
-						
+
 					}).catch(function(err) {
 						console.error('Error upgrading:', err);
 					});
-					
+
 				}).catch(function(err) {
 					console.error('Error upgrading:', err);
 				});
 			};
-			
+
 			var defaultsNormalizedIndexConf = function(rawIdxConf) {
 				var validStr = function(aStr) {
 					return (typeof aStr === 'string') && (aStr.length > 0);
@@ -325,14 +325,14 @@ angular.module('proto-db', [])
 				var validBool = function(aBool) {
 					return typeof aBool === 'boolean';
 				}
-				
-				if ( !validStr(rawIdxConf.keyPath) ) { 
+
+				if ( !validStr(rawIdxConf.keyPath) ) {
 					throw new Error('An index configuration must at least contain a keyPath value');
 				}
-				
+
 				var normIdxConf = { keyPath: rawIdxConf.keyPath };
 				normIdxConf.name = validStr(rawIdxConf.name) ? rawIdxConf.name : rawIdxConf.keyPath;
-				
+
 				normIdxConf.options = {}
 				if ( validBool(rawIdxConf.unique) ) {
 					normIdxConf.options.unique = rawIdxConf.unique;
@@ -340,10 +340,10 @@ angular.module('proto-db', [])
 				if ( validBool(rawIdxConf.multiEntry) ) {
 					normIdxConf.options.multiEntry = rawIdxConf.multiEntry;
 				}
-				
+
 				return normIdxConf;
 			};
-			
+
 	        dbAccessor.open = function() {
 	            return $q(function(resolve, reject) {
 	                if (database !== null) {
@@ -357,12 +357,12 @@ angular.module('proto-db', [])
 	                    };
 	                    req.onsuccess = function() {
 	                        database = req.result;
-							
+
 							if (mappingJobs.length > 0) {
 								performMappingJobs(function() {
 									resolve(database);
 								});
-								
+
 							} else {
 								resolve(database);
 							}
@@ -371,14 +371,14 @@ angular.module('proto-db', [])
 							var idb = event.target.result,
 								oldVersion = event.oldVersion,
 								transaction = event.target.transaction;
-						
+
 							for (var key in storeConfigs) {
 								if ( !storeConfigs.hasOwnProperty(key) ) { continue; }
-								
+
 								var conf = storeConfigs[key],
 									justCreated = false,
 									os = null;
-							
+
 								if ( !idb.objectStoreNames.contains(conf.name) ) {
 									var idbOSConf = {keyPath: conf.keyPath};
 									if (typeof conf.autoIncrement !== 'undefined') {
@@ -389,23 +389,23 @@ angular.module('proto-db', [])
 									os = idb.createObjectStore(conf.name, idbOSConf);
 									justCreated = true;
 								}
-								
+
 								if ( (typeof conf.indexes !== 'undefined') && (conf.indexes.length > 0) ) {
 									if (!os) { os = req.transaction.objectStore(conf.name); }
-									
+
 									for (var i = 0; i < conf.indexes.length; i++) {
 										var idxConf = defaultsNormalizedIndexConf(conf.indexes[i]);
 										os.createIndex(idxConf.name, idxConf.keyPath, idxConf.options);
 									}
 								}
-								
+
 								if ( !conf.upgradeMapper || justCreated ) { continue; }
-																
+
 								if (version !== oldVersion) {
-									mappingJobs.push({ 
-										'config': conf, 
-										'newVersion': version, 
-										'oldVersion': oldVersion 
+									mappingJobs.push({
+										'config': conf,
+										'newVersion': version,
+										'oldVersion': oldVersion
 									});
 								}
 							}
@@ -420,7 +420,7 @@ angular.module('proto-db', [])
 				if (storeConfigs[config.name]) {
 					throw new Error('Object store "' + config.name + '" already exists.');
 				}
-				
+
 				storeConfigs[config.name] = config;
 				this[config.name] = new ObjectStoreAccessor(this, config.name);
 	            return this;
@@ -433,21 +433,21 @@ angular.module('proto-db', [])
         var ObjectStoreAccessor = function(databaseAccessor, name) {
             this.databaseAccessor = databaseAccessor;
             this.name = name;
-			
+
 			var self = this;
-			
+
 			Object.defineProperty(self, 'readonly', {
 			    get: function() {
 					return self.provideStore(ObjectStoreAccessor.READONLY);
 			    }
 			});
-			
+
 			Object.defineProperty(self, 'readwrite', {
 			    get: function() {
 					return self.provideStore(ObjectStoreAccessor.READWRITE);
 			    }
 			});
-			
+
 			Object.defineProperty(self, 'all', {
 			    get: function() {
 					return self.readonly.then(function(oStore) {
@@ -459,7 +459,7 @@ angular.module('proto-db', [])
 
         ObjectStoreAccessor.READONLY = 'readonly';
         ObjectStoreAccessor.READWRITE = 'readwrite';
-			
+
         ObjectStoreAccessor.prototype.provideStore = function(mode) {
             var dbAccessor = this.databaseAccessor,
                 storeName = this.name;
@@ -537,12 +537,12 @@ angular.module('proto-db', [])
     .factory('ProtoDB', function ($q, createDatabaseAccessor) {
 		var dbNames = [],
 			ProtoDB = {};
-		
+
         ProtoDB.configDatabase = function(conf) {
 			if (dbNames.indexOf(conf.name) > -1) {
 				throw new Error('Database with name "' + conf.name + '" already exists.');
 			}
-			
+
             var accessor = ProtoDB[conf.name];
             if (!accessor) {
 				dbNames.push(conf.name);
