@@ -635,6 +635,7 @@ Instances of this prototype sport the following API:
 
 ## ToDo
 
+- Complete documentation of resolve-with values.
 - UnitTests need to be added.
 - Means of removing object stores and indexes when no longer needed.
 - Other module-systems, i.e. node-style-require.
