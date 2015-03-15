@@ -9,13 +9,14 @@ With IndexedDB modern browsers get a reliable cross-platform storage technique. 
 2. **Don't compromise debugability.**
 3. **Cover all features.**
 
-> ProtoDB is a lean layer around the IndexedDB. While keeping most of wording and concept, it offers with the following comforts:
+> ProtoDB is a lean layer around IndexedDB. While keeping most of wording and concept, it offers the following comforts:
+
 - **transactions** are completely **abstracted away**
 - **single data items and arrays** thereof are **treated alike** 
 - **asynchronous behavior** is implemented with **JS promises**
-- **data migration/upgrades** between versions of your database is **greatly simplified.**
+- **data migration/upgrades** between versions is **greatly simplified.**
 
-Code is organized as a AngularJS module. If you're unhappy with that, go make a fork. I'll be happy to help, just drop me a line.
+Code is organized as a AngularJS module. If you're unhappy with that, I'll be happy to help, just drop me a line.
 
 -----
 
