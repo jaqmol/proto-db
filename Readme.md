@@ -248,11 +248,11 @@ ProtoDB.addressBook.contacts.all
 <object-store>.index(<index-name>)
 ```
 
-Retrieve an IndexHelper instance for further operations on an index.
+Retrieve an [index helper object](#indexes-api-reference) to operate on indexes.
 
 **ARGUMENTS:** The name of the index.
 
-**RETURNS:** A promise ($q) resolving with an IndexHelper instance.
+**RETURNS:** A promise ($q) resolving with an [index helper](#indexes-api-reference).
 
 ###### Example
 
