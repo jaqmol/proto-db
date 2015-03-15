@@ -4,7 +4,7 @@
   "authors": [
     "Ronny Reichmann <jaqmol@users.noreply.github.com>"
   ],
-  "description": "In-browser database - backed by IndexedDB - with a beautiful API.",
+  "description": "In-browser persistancy DB with beautiful API – cast into AngularJS.",
   "main": "./proto-db.service.js",
   "keywords": [
     "indexeddb",

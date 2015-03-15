@@ -1,7 +1,7 @@
 ProtoDB
 =======
 
-#### In-browser persistancy DB with beautiful API – cast into AngularJS
+#### In-browser persistence DB with beautiful API – cast into AngularJS
 
 With IndexedDB modern browsers get a reliable cross-platform storage technique. Unfortunately the API is cumbersome. ProtoDB aims to fix that, under the following corner points:
 
@@ -23,9 +23,9 @@ Code is organized as a AngularJS module. If you're unhappy with that, go make a 
 [Configure databases](#configure-databases) | [Configure object stores](#configure-object-stores) | [Upgrade object stores](#upgrade-object-stores) | [Configure indexes](#configure-indexes) | [Accessing data in object stores](#accessing-data-in-object-stores) | [Getting an object store](#getting-an-object-store)
 
 ###### References
-**[Object store API reference](#object-store-api-reference)** | [all](#-lt-object-store-gt-all) | [index](#-lt-object-store-gt-index) | [count](#-lt-object-store-gt-count) | [add](#-lt-object-store-gt-add) | [clear](#-lt-object-store-gt-clear) | [delete](#-lt-object-store-gt-delete) | [get](#-lt-object-store-gt-get) | [put](#-lt-object-store-gt-put) | [forEach](#-lt-object-store-gt-foreach) | [map](#-lt-object-store-gt-map) | [filter](#-lt-object-store-gt-filter)
+**[Object store API reference](#object-store-api-reference)** | [all](#-os-all) | [index](#-os-index) | [count](#-os-count) | [add](#-os-add) | [clear](#-os-clear) | [delete](#-os-delete) | [get](#-os-get) | [put](#-os-put) | [forEach](#-os-foreach) | [map](#-os-map) | [filter](#-os-filter)
   
-**[Indexes API reference](#indexes-api-reference)** | [all](#-lt-index-gt-all) | [forEach](#-lt-index-gt-foreach) | [map](#-lt-index-gt-map) | [filter](#-lt-index-gt-filter) | [IndexResult](#indexresult)
+**[Indexes API reference](#indexes-api-reference)** | [all](#-idx-all) | [forEach](#-idx-foreach) | [map](#-idx-map) | [filter](#-idx-filter) | [IndexResult](#indexresult)
   
 [ToDo](#todo)
 
@@ -214,7 +214,7 @@ ProtoDB.addressBook.contacts.<call-API-methods>
 
 ## Object store API reference
 
-## &lt;object-store&gt;.all
+## *os.*all
 *property*
 
 ```javascript
@@ -237,7 +237,7 @@ ProtoDB.addressBook.contacts.all
 	});
 ```
 
-## &lt;object-store&gt;.index
+## *os.*index
 *method*
 
 ```javascript
@@ -268,7 +268,7 @@ ProtoDB.addressBook.contacts.index('email')
 	});
 ```
 
-## &lt;object-store&gt;.count
+## *os.*count
 *method*
 
 ```javascript
@@ -293,7 +293,7 @@ ProtoDB.addressBook.contacts.count()
 	});
 ```
 
-## &lt;object-store&gt;.add
+## *os.*add
 *method*
 
 ```javascript
@@ -318,7 +318,7 @@ ProtoDB.addressBook.contacts.add(newJack)
 	});
 ```
 
-## &lt;object-store&gt;.clear
+## *os.*clear
 *method*
 
 ```javascript
@@ -343,7 +343,7 @@ ProtoDB.addressBook.contacts.clear()
 	});
 ```
 
-## &lt;object-store&gt;.delete
+## *os.*delete
 *method*
 
 ```javascript
@@ -368,7 +368,7 @@ ProtoDB.addressBook.contacts.delete(jacksID)
 	});
 ```
 
-## &lt;object-store&gt;.get
+## *os.*get
 *method*
 
 ```javascript
@@ -393,7 +393,7 @@ ProtoDB.addressBook.contacts.get(tomsID)
 	});
 ```
 
-## &lt;object-store&gt;.put
+## *os.*put
 *method*
 
 ```javascript
@@ -418,7 +418,7 @@ ProtoDB.addressBook.contacts.put(tomsContact)
 	});
 ```
 
-## &lt;object-store&gt;.forEach
+## *os.*forEach
 *method*
 
 ```javascript
@@ -447,7 +447,7 @@ ProtoDB.addressBook.contacts
 	});
 ```
 
-## &lt;object-store&gt;.map
+## *os.*map
 *method*
 
 ```javascript
@@ -477,7 +477,7 @@ ProtoDB.addressBook.contacts
 	});
 ```
 
-## &lt;object-store&gt;.filter
+## *os.*filter
 *method*
 
 ```javascript
@@ -509,11 +509,11 @@ ProtoDB.addressBook.contacts
 
 Indexes are accessed via a index helper object. Index helpers are obtained by calling the method `ProtoDB.<database>.<object-store>.index('<index-name>')`.
 
-## &lt;index&gt;.all
+## *idx.*all
 *property*
 
 ```javascript
-<object-store>.index(<index-name>).all
+<index>.all
 ```
 
 Obtain all primary keys and values of an index.
@@ -532,7 +532,7 @@ ProtoDB.addressBook.contacts.index('name.first').all
 	});
 ```
 
-## &lt;index&gt;.forEach
+## *idx.*forEach
 *method*
 
 ```javascript
@@ -561,7 +561,7 @@ ProtoDB.addressBook.contacts.index('name.first')
 	});
 ```
 
-## &lt;index&gt;.map
+## *idx.*map
 *method*
 
 ```javascript
@@ -591,7 +591,7 @@ ProtoDB.addressBook.contacts.index('name.first')
 	});
 ```
 
-## &lt;index&gt;.filter
+## *idx.*filter
 *method*
 
 ```javascript
